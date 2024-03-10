@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 type weatherType = {
 place:string,
@@ -14,12 +15,12 @@ icon:string
 }
 
 const Weather = () => {
-    const [city,setCity] = useState('')
+    const [city,setCity] = useState('malappuram')
     const [weather,setWeather] = useState<weatherType | null>(null)
 
-    // useEffect(()=>{
-        
-    // })
+    useEffect(()=>{
+        fetchWeather()
+    },[])
 
     const fetchWeather = async ()=>{
         try {
@@ -41,7 +42,7 @@ const Weather = () => {
             })
         } catch (error) {
             console.log(error);
-            
+            toast.error("city not found")
         }
     }
 
